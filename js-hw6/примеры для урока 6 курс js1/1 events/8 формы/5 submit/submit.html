@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="submit.html" method="post">
+        <input type="text" name="login">
+        <div class="error"></div>
+        <button>Отправить</button>
+    </form>
+
+    <script>
+        "use strict";
+
+        const inputEl = document.querySelector('input');
+        const errorEl = document.querySelector('.error');
+        const formEl = document.querySelector('form');
+
+        formEl.addEventListener('submit', function (event) {
+            if (inputEl.value == "") {
+                event.preventDefault();
+                errorEl.innerText = "input не может быть пустым";
+            }
+        });
+    </script>
+</body>
+</html>
