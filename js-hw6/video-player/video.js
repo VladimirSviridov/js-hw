@@ -36,12 +36,8 @@ document.addEventListener('keyup', function (event) {
         volume.value = +volume.value - 0.1;
         video.volume = volume.value;
     }
-});
-
-//Перемотка видео. Видео возобновляет в том же режими что было до перемотки (если было на паузе то остается на паузе)
-//если проигрывалось, то продолжает проигрываться
-document.addEventListener('keyup', function (event) {
-    //Перематываем вперед
+    //Перемотка видео. Видео возобновляет в том же режими что было до перемотки (если было на паузе то остается на паузе)
+    //если проигрывалось, то продолжает проигрываться
     if (event.code === "ArrowRight") {
         timing.value = +timing.value + 0.5;
     } //Перематываем назад
@@ -55,6 +51,7 @@ document.addEventListener('keyup', function (event) {
         progressIdentifier = setInterval(changeProgress, 100);
     }
 });
+
 
 pauseBtn.addEventListener('click', function () {
     if (!video.paused) {
@@ -74,8 +71,7 @@ playBtn.addEventListener('click', function () {
 
 
 //Запуск и остановка видео по клику на самом видео.
-window.addEventListener('click', function (event) {
-    if(event.target.tagName === "VIDEO"){
+video.addEventListener('click', function (event) {
         if(!video.paused) {
             // console.log('pause btn');
             video.pause();
@@ -84,7 +80,6 @@ window.addEventListener('click', function (event) {
             video.play();
             progressIdentifier = setInterval(changeProgress, 100);
         }
-    }
 });
 
 timing.addEventListener('change', function (event) {
