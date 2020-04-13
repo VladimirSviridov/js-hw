@@ -2,12 +2,16 @@ let basketBtns = document.querySelectorAll('.toBasketBtn');
 //берем все кнопки "В корзину" и слушаем клики по ним
 basketBtns.forEach(function (btn) {
     btn.addEventListener('click', function (event) {
-        let id = event.srcElement.dataset.id;
-        let price = event.srcElement.dataset.price;
-        let name = event.srcElement.dataset.name;
+        let id = event.target.dataset.id;
+        let price = event.target.dataset.price;
+        let name = event.target.dataset.name;
         //Получаем число желаемых покупок. Как сделать корое не записывая в button - не знаю.
         //И как записать в btn неизвестное заранее число - тоже не знаю
+        //Можно получить value через data-id, но я не знаю как
+        //Примерно так, но не работает
+        //let count = $('#dataset').children('[data-id="'+id+'"]').value;
         let count = event.target.parentNode.children[2].children[1].firstElementChild.value;
+
         basket.addProduct({id: id, price: price, name: name, count: count})
     })
 });
@@ -118,7 +122,7 @@ let basket = {
      * @param {MouseEvent} event
      */
     removeProduct(event) {
-        let id = event.srcElement.dataset.id;
+        let id = event.target.dataset.id;
         //Предложим пользователю самому выбрать сколько позиций он хочет удалить
         this.numberToDelete = +prompt("Сколько штук вы хотите убрать из корзины?");
         //Проверяем число ли ввел пользователь
